@@ -66,6 +66,7 @@ def coord(tuple_data):
 
 # 截取当前 屏幕，并输出 图片保存路径
 def screenshot():
+    time.sleep(1)
     now_time_day = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
     _path = ensure_path_sep(f'/imgs/{now_time_day}.png')
     _command = 'adb exec-out screencap -p > ' + _path
@@ -77,22 +78,23 @@ def run():
     cron_task()
     # 下方加个 判断 页面中是否有 阿里钉文字 判断，有者执行进入阿里钉
     _file_path = screenshot()
-    time.sleep(1)
     check_in_run = True
     possible = ['取消', '阿里钉']
     text01 = easycorrun(_file_path)
     for i in possible:
         result, tuple_data = img_word(text01, i)
-        if i == '取消' and result:
-            # 这里执行 相关adb命令
-            _coord = coord(tuple_data)
-            os.system(f'adb shell input tap {_coord}')
+        if result:
+            _content = i
             break
-        elif i == '阿里钉' and result:
-            check_in()
-            check_in_run = False
-        else:
-            INFO.logg.info('页面进入异常检查代码')
+    if _content == '取消' and result:
+        # 这里执行 相关adb命令
+        _coord = coord(tuple_data)
+        os.system(f'adb shell input tap {_coord}')
+    elif _content == '阿里钉' and result:
+        check_in()
+        check_in_run = False
+    else:
+        INFO.logg.info('页面进入异常检查代码')
     if check_in_run:
         check_in()
     # 下方 加个 截图 并判断是否打卡成功
