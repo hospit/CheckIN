@@ -89,7 +89,8 @@ def run():
     if _content == '取消' and result:
         # 这里执行 相关adb命令
         _coord = coord(tuple_data)
-        os.system(f'adb shell input tap {_coord}')
+        _result = os.system(f'adb shell input tap {_coord}')
+        INFO.logg.info(str(_result)+'取消后续 adb command')
     elif _content == '阿里钉' and result:
         check_in()
         check_in_run = False
