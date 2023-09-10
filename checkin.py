@@ -112,11 +112,11 @@ if __name__ == '__main__':
     # a=coord(([[487, 2173], [591, 2173], [591, 2233], [487, 2233]], '取消', 0.9918431518684246))
     # print(a)
     # print(screenshot())
-    run()
-    # scheduler = BlockingScheduler()
-    # # scheduler.add_job(my_clock, "interval", seconds=3)
+    # run()
+    scheduler = BlockingScheduler()
+    scheduler.add_job(run, "interval", seconds=20)
     # scheduler.add_job(run, "cron", hour=18, minute=47)
-    # scheduler.start()
+    scheduler.start()
 
 
 
