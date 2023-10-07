@@ -92,7 +92,6 @@ def ensure_path_sep(path) -> Text:
     return root_path() + path
 
 
-
 now_time_day = time.strftime("%Y-%m-%d", time.localtime())
 # DEBUG = LogHandler(ensure_path_sep(f'\\logs\\debug-{now_time_day}.log'), level='debug')
 INFO = LogHandler(ensure_path_sep(f"\\logs\\info.log"), level='info')
@@ -101,9 +100,10 @@ INFO = LogHandler(ensure_path_sep(f"\\logs\\info.log"), level='info')
 # ee = LogHandler(ensure_path_sep(f'\\logs\\warning-{now_time_day}.log'), level='debug')
 
 if __name__ == '__main__':
+    print(os.path.abspath('.'))
     # ee.logg.debug("测试")
     # DEBUG.logg.info("0000")
-    INFO.logg.info("cs")
+    # INFO.logg.info("cs")
     # try:
     #     open("s.txt", 'r')
     # except Exception:

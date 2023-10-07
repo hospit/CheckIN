@@ -49,8 +49,6 @@ def easycorrun(filepath):
 def img_word(text, word_content):
     for i in text:
         if word_content in i:
-            # print(True)
-            # print(type(i))
             return True, i
     return False, None
 
@@ -107,11 +105,8 @@ def run():
         INFO.logg.info('打卡失败')
 
 
-
 if __name__ == '__main__':
     # a=coord(([[487, 2173], [591, 2173], [591, 2233], [487, 2233]], '取消', 0.9918431518684246))
-    # print(a)
-    # print(screenshot())
     # run()
     scheduler = BlockingScheduler()
     scheduler.add_job(run, "interval", seconds=20)
